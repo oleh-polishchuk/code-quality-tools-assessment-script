@@ -1,0 +1,22 @@
+{
+  "name": "code-quality-tools-assessment-script",
+  "version": "1.0.0",
+  "description": "The script returns the status of the formatter, linter, and editorconfig tools",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "code-quality-tools-assessment-script": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oleh-polishchuk/code-quality-tools-assessment-script.git"
+  },
+  "author": "Oleh Polishchuk <oleh.polishchuk.ck@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oleh-polishchuk/code-quality-tools-assessment-script/issues"
+  },
+  "homepage": "https://github.com/oleh-polishchuk/code-quality-tools-assessment-script#readme"
+}
