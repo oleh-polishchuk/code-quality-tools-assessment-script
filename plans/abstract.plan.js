@@ -4,25 +4,25 @@ class AbstractPlan {
         this.fix = false;
     }
 
-    handleStep(step, results) {
-        let stepResults = step.instance.check();
+    async handleStep(step, results) {
+        let stepResults = await step.instance.check();
 
-        if (this.fix) {
-            stepResults = step.instance.fix();
+        if (this.fix && !stepResults.answer) {
+            stepResults = await step.instance.fix();
         }
 
         results.push(...stepResults);
 
         if (step.next) {
-            this.handleStep(step.next, results);
+            await this.handleStep(step.next, results);
         }
     }
 
-    execute() {
+    async execute() {
         const results = [];
-        this.steps.forEach(step => {
-            this.handleStep(step, results);
-        });
+        for (const step of this.steps) {
+            await this.handleStep(step, results);
+        }
         return results;
     }
 }
