@@ -8,6 +8,8 @@ const PrettierFileMatchesCorporateTemplateStep = require('./prettier-file-matche
 const PrettierignoreFilePresentStep = require('./prettierignore-file-present.step');
 const PrettierignoreFileMatchesCorporateTemplateStep = require('./prettierignore-file-matches-corporate-template.step');
 const PrettierPackageInstalledStep = require('./prettier-package-installed.step');
+const PrettierPackageMatchesLatestSupportedVersionStep = require('./prettier-package-matches-latest-supported-version.step');
+const UnneededTypesPrettierPackageUninstalledStep = require('./unneeded-types-prettier-package-uninstalled.step');
 
 // TSLint steps
 
@@ -22,6 +24,8 @@ module.exports = {
     PrettierignoreFilePresentStep,
     PrettierignoreFileMatchesCorporateTemplateStep,
     PrettierPackageInstalledStep,
+    PrettierPackageMatchesLatestSupportedVersionStep,
+    UnneededTypesPrettierPackageUninstalledStep,
 
     // TSLint steps
 

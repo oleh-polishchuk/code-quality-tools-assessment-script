@@ -3,13 +3,13 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class PrettierPackageInstalledStep {
+class PrettierPackageMatchesLatestSupportedVersionStep {
     constructor(directory) {
         this.directory = directory;
         this.result = {
             tool: 'prettier',
             directory: directory,
-            question: 'Is the prettier package installed?',
+            question: 'Does the prettier package matches the latest supported version?',
             answer: false,
         };
     }
@@ -19,8 +19,8 @@ class PrettierPackageInstalledStep {
             const packageJson = JSON.parse(fs.readFileSync(path.join(this.directory, 'package.json'), 'utf8'));
             const devDependencies = packageJson.devDependencies;
 
-            const prettierDevInstalled = devDependencies && devDependencies.prettier;
-            if (prettierDevInstalled) {
+            const prettierVersion = devDependencies && devDependencies.prettier;
+            if (prettierVersion === '^3.1.1') {
                 this.result.answer = true;
             }
 
@@ -34,7 +34,7 @@ class PrettierPackageInstalledStep {
     async fix() {
         try {
             await promisify(exec)(`npm uninstall prettier`, { cwd: this.directory });
-            await promisify(exec)(`npm install --save-dev prettier`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev prettier@3.1.1`, { cwd: this.directory });
             this.result.answer = true;
             return [this.result];
         } catch (e) {
@@ -44,4 +44,5 @@ class PrettierPackageInstalledStep {
     }
 }
 
-module.exports = PrettierPackageInstalledStep;
+module.exports = PrettierPackageMatchesLatestSupportedVersionStep;
+

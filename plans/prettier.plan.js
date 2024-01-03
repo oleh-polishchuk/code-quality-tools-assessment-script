@@ -1,10 +1,12 @@
 const AbstractPlan = require("./abstract.plan");
 const {
+    UnneededTypesPrettierPackageUninstalledStep,
     PrettierFilePresentStep,
     PrettierFileMatchesCorporateTemplateStep,
     PrettierignoreFilePresentStep,
     PrettierignoreFileMatchesCorporateTemplateStep,
     PrettierPackageInstalledStep,
+    PrettierPackageMatchesLatestSupportedVersionStep,
 } = require("../steps");
 
 class PrettierPlan extends AbstractPlan {
@@ -12,12 +14,8 @@ class PrettierPlan extends AbstractPlan {
         super();
         this.steps = [
             {
-                name: 'Is the .prettierrc.js file present?',
-                instance: new PrettierFilePresentStep(directory),
-                next: {
-                    name: 'Does the .prettierrc.js file match the corporate template?',
-                    instance: new PrettierFileMatchesCorporateTemplateStep(directory, corporateTemplatesPath),
-                }
+                name: 'Is the unneeded @types/prettier package uninstalled?',
+                instance: new UnneededTypesPrettierPackageUninstalledStep(directory),
             },
             {
                 name: 'Is the .prettierignore file present?',
@@ -30,10 +28,10 @@ class PrettierPlan extends AbstractPlan {
             {
                 name: 'Is the prettier package installed?',
                 instance: new PrettierPackageInstalledStep(directory),
-                // next: {
-                //     name: 'Does the prettier package matches the corporate template?',
-                //     // instance: ,
-                // }
+                next: {
+                    name: 'Does the prettier package matches the corporate template?',
+                    instance: new PrettierPackageMatchesLatestSupportedVersionStep(directory),
+                }
             },
             // {
             //     name: 'Is the @fashioncloud/prettier-config package installed?',
@@ -43,6 +41,14 @@ class PrettierPlan extends AbstractPlan {
             //         // instance: ,
             //     }
             // },
+            {
+                name: 'Is the .prettierrc.js file present?',
+                instance: new PrettierFilePresentStep(directory),
+                next: {
+                    name: 'Does the .prettierrc.js file match the corporate template?',
+                    instance: new PrettierFileMatchesCorporateTemplateStep(directory, corporateTemplatesPath),
+                }
+            },
             // {
             //     name: 'Is the husky package installed?',
             //     // instance: ,
@@ -59,10 +65,7 @@ class PrettierPlan extends AbstractPlan {
             //         // instance: ,
             //     }
             // },
-            // {
-            //     name: 'Is the unneeded @types/prettier package installed?',
-            //     // instance: ,
-            // },
+
             // {
             //     name: 'Is the package.json scripts present?',
             //     // instance: ,
