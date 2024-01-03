@@ -14,6 +14,8 @@ const FashioncloudPrettierConfigPackageInstalledStep = require('./fashioncloud-p
 const FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep = require('./fashioncloud-prettier-config-package-matches-latest-supported-version.step');
 const HuskyPackageInstalledStep = require('./husky-package-installed.step');
 const HuskyPackageMatchesLatestSupportedVersionStep = require('./husky-package-matches-latest-supported-version.step');
+const LintStagedPackageInstalledStep = require('./lint-staged-package-installed.step');
+const LintStagedPackageMatchesLatestSupportedVersionStep = require('./lint-staged-package-matches-latest-supported-version.step');
 
 // TSLint steps
 
@@ -34,6 +36,8 @@ module.exports = {
     FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep,
     HuskyPackageInstalledStep,
     HuskyPackageMatchesLatestSupportedVersionStep,
+    LintStagedPackageInstalledStep,
+    LintStagedPackageMatchesLatestSupportedVersionStep,
 
     // TSLint steps
 

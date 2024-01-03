@@ -5,9 +5,11 @@ class AbstractPlan {
     }
 
     async handleStep(step, results) {
+        console.log(`Checking ${step.name}`);
         let stepResults = await step.instance.check();
 
-        if (this.fix && !stepResults.answer) {
+        if (this.fix && !stepResults[0].answer) {
+            console.log(`Fixing ${step.name}`);
             stepResults = await step.instance.fix();
         }
 

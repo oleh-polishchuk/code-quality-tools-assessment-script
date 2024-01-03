@@ -11,6 +11,8 @@ const {
     FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep,
     HuskyPackageInstalledStep,
     HuskyPackageMatchesLatestSupportedVersionStep,
+    LintStagedPackageInstalledStep,
+    LintStagedPackageMatchesLatestSupportedVersionStep,
 } = require("../steps");
 
 class PrettierPlan extends AbstractPlan {
@@ -61,14 +63,14 @@ class PrettierPlan extends AbstractPlan {
                     instance: new HuskyPackageMatchesLatestSupportedVersionStep(directory),
                 }
             },
-            // {
-            //     name: 'Is the lint-staged package installed?',
-            //     // instance: ,
-            //     next: {
-            //         name: 'Does the lint-staged package matches the latest supported version?',
-            //         // instance: ,
-            //     }
-            // },
+            {
+                name: 'Is the lint-staged package installed?',
+                instance: new LintStagedPackageInstalledStep(directory),
+                next: {
+                    name: 'Does the lint-staged package matches the latest supported version?',
+                    instance: new LintStagedPackageMatchesLatestSupportedVersionStep(directory),
+                }
+            },
 
             // {
             //     name: 'Is the package.json scripts present?',
