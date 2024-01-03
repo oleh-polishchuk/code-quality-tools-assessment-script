@@ -1,10 +1,12 @@
+const AbstractPlan = require('./abstract.plan');
 const {
     EditorconfigFilePresentStep,
     EditorconfigFileMatchesCorporateTemplateStep,
 } = require('../steps');
 
-class EditorconfigPlan {
+class EditorconfigPlan extends AbstractPlan {
     constructor(directory, corporateTemplatesPath, fix = false) {
+        super();
         this.steps = [
             {
                 name: 'Editorconfig file present',
@@ -16,28 +18,6 @@ class EditorconfigPlan {
             }
         ];
         this.fix = fix;
-    }
-
-    handleStep(step, results) {
-        let stepResults = step.instance.check();
-
-        if (this.fix) {
-            stepResults = step.instance.fix();
-        }
-
-        results.push(...stepResults);
-
-        if (step.next) {
-            this.handleStep(step.next, results);
-        }
-    }
-
-    execute() {
-        const results = [];
-        this.steps.forEach(step => {
-            this.handleStep(step, results);
-        });
-        return results;
     }
 }
 
