@@ -10,6 +10,10 @@ const PrettierignoreFileMatchesCorporateTemplateStep = require('./prettierignore
 const PrettierPackageInstalledStep = require('./prettier-package-installed.step');
 const PrettierPackageMatchesLatestSupportedVersionStep = require('./prettier-package-matches-latest-supported-version.step');
 const UnneededTypesPrettierPackageUninstalledStep = require('./unneeded-types-prettier-package-uninstalled.step');
+const FashioncloudPrettierConfigPackageInstalledStep = require('./fashioncloud-prettier-config-package-installed.step');
+const FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep = require('./fashioncloud-prettier-config-package-matches-latest-supported-version.step');
+const HuskyPackageInstalledStep = require('./husky-package-installed.step');
+const HuskyPackageMatchesLatestSupportedVersionStep = require('./husky-package-matches-latest-supported-version.step');
 
 // TSLint steps
 
@@ -26,6 +30,10 @@ module.exports = {
     PrettierPackageInstalledStep,
     PrettierPackageMatchesLatestSupportedVersionStep,
     UnneededTypesPrettierPackageUninstalledStep,
+    FashioncloudPrettierConfigPackageInstalledStep,
+    FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep,
+    HuskyPackageInstalledStep,
+    HuskyPackageMatchesLatestSupportedVersionStep,
 
     // TSLint steps
 

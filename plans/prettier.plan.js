@@ -7,6 +7,10 @@ const {
     PrettierignoreFileMatchesCorporateTemplateStep,
     PrettierPackageInstalledStep,
     PrettierPackageMatchesLatestSupportedVersionStep,
+    FashioncloudPrettierConfigPackageInstalledStep,
+    FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep,
+    HuskyPackageInstalledStep,
+    HuskyPackageMatchesLatestSupportedVersionStep,
 } = require("../steps");
 
 class PrettierPlan extends AbstractPlan {
@@ -33,14 +37,14 @@ class PrettierPlan extends AbstractPlan {
                     instance: new PrettierPackageMatchesLatestSupportedVersionStep(directory),
                 }
             },
-            // {
-            //     name: 'Is the @fashioncloud/prettier-config package installed?',
-            //     // instance: ,
-            //     next: {
-            //         name: 'Does the @fashioncloud/prettier-config package matches the latest supported version?',
-            //         // instance: ,
-            //     }
-            // },
+            {
+                name: 'Is the @fashioncloud/prettier-config package installed?',
+                instance: new FashioncloudPrettierConfigPackageInstalledStep(directory),
+                next: {
+                    name: 'Does the @fashioncloud/prettier-config package matches the latest supported version?',
+                    instance: new FashioncloudPrettierConfigPackageMatchesLatestSupportedVersionStep(directory),
+                }
+            },
             {
                 name: 'Is the .prettierrc.js file present?',
                 instance: new PrettierFilePresentStep(directory),
@@ -49,14 +53,14 @@ class PrettierPlan extends AbstractPlan {
                     instance: new PrettierFileMatchesCorporateTemplateStep(directory, corporateTemplatesPath),
                 }
             },
-            // {
-            //     name: 'Is the husky package installed?',
-            //     // instance: ,
-            //     next: {
-            //         name: 'Does the husky package matches the latest supported version?',
-            //         // instance: ,
-            //     }
-            // },
+            {
+                name: 'Is the husky package installed?',
+                instance: new HuskyPackageInstalledStep(directory),
+                next: {
+                    name: 'Does the husky package matches the latest supported version?',
+                    instance: new HuskyPackageMatchesLatestSupportedVersionStep(directory),
+                }
+            },
             // {
             //     name: 'Is the lint-staged package installed?',
             //     // instance: ,
