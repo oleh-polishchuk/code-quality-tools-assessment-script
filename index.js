@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const utils = require('./utils');
-const { EditorconfigPlan } = require('./plans');
+const { EditorconfigPlan, PrettierPlan, TSLintPlan } = require('./plans');
 const path = require("path");
 
 // prepare
@@ -13,8 +13,15 @@ const results = [];
 directories.forEach(directory => {
     console.log(`Checking ${directory}`);
 
-    const editorconfigPlan = new EditorconfigPlan(directory, path.join(__dirname, 'corporate-templates'), fix);
+    const corporateTemplatesPath = path.join(__dirname, 'corporate-templates');
+
+    const editorconfigPlan = new EditorconfigPlan(directory, corporateTemplatesPath, fix);
+    const prettierPlan = new PrettierPlan(directory, corporateTemplatesPath, fix);
+    const tslintPlan = new TSLintPlan(directory, corporateTemplatesPath, fix);
+
     results.push(...editorconfigPlan.execute());
+    results.push(...prettierPlan.execute());
+    results.push(...tslintPlan.execute());
 });
 
 // write results
