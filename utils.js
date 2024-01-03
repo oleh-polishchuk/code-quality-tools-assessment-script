@@ -25,7 +25,9 @@ function writeToCSV(results) {
         })
         .join('\n');
     const csv = `${header}\n${data}`;
-    fs.writeFileSync(path.join(process.cwd(), 'results.csv'), csv);
+    const file = path.join(process.cwd(), 'results.csv');
+    fs.writeFileSync(file, csv);
+    return file;
 }
 
 module.exports = {
