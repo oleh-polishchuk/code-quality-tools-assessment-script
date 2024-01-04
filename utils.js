@@ -21,11 +21,11 @@ function writeToCSV(results) {
     const header = 'tool,directory,question,answer';
     const data = results
         .map(result => {
-            return `${result.tool},${result.directory},${result.question},${result.answer}`;
+            return `${result.tool},${result.directory},${result.question},${result.answer ? 1 : 0}`;
         })
         .join('\n');
     const csv = `${header}\n${data}`;
-    const file = path.join(process.cwd(), 'results.csv');
+    const file = path.join(process.cwd(), `results-${new Date().toISOString()}.csv`);
     fs.writeFileSync(file, csv);
     return file;
 }

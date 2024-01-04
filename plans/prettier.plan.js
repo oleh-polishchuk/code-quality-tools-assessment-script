@@ -13,6 +13,7 @@ const {
     HuskyPackageMatchesLatestSupportedVersionStep,
     LintStagedPackageInstalledStep,
     LintStagedPackageMatchesLatestSupportedVersionStep,
+    CodebaseFormattedWithPrettierStep,
 } = require("../steps");
 
 class PrettierPlan extends AbstractPlan {
@@ -84,10 +85,10 @@ class PrettierPlan extends AbstractPlan {
             //         // instance: ,
             //     }
             // },
-            // {
-            //     name: 'Is the codebase formatted with prettier?',
-            //     // instance: ,
-            // }
+            {
+                name: "Is the codebase formatted with prettier?",
+                instance: new CodebaseFormattedWithPrettierStep(directory),
+            },
         ];
         this.fix = fix;
     }
