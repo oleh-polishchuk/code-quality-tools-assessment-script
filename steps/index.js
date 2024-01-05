@@ -17,6 +17,7 @@ const HuskyPackageMatchesLatestSupportedVersionStep = require('./husky-package-m
 const LintStagedPackageInstalledStep = require('./lint-staged-package-installed.step');
 const LintStagedPackageMatchesLatestSupportedVersionStep = require('./lint-staged-package-matches-latest-supported-version.step');
 const CodebaseFormattedWithPrettierStep = require('./codebase-formatted-with-prettier.step');
+const PackageJsonScriptsPresentedStep = require('./package-json-scripts-presented.step');
 
 // TSLint steps
 
@@ -40,6 +41,7 @@ module.exports = {
     LintStagedPackageInstalledStep,
     LintStagedPackageMatchesLatestSupportedVersionStep,
     CodebaseFormattedWithPrettierStep,
+    PackageJsonScriptsPresentedStep,
 
     // TSLint steps
 

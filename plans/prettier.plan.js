@@ -14,6 +14,7 @@ const {
     LintStagedPackageInstalledStep,
     LintStagedPackageMatchesLatestSupportedVersionStep,
     CodebaseFormattedWithPrettierStep,
+    PackageJsonScriptsPresentedStep,
 } = require("../steps");
 
 class PrettierPlan extends AbstractPlan {
@@ -72,11 +73,10 @@ class PrettierPlan extends AbstractPlan {
                     instance: new LintStagedPackageMatchesLatestSupportedVersionStep(directory),
                 }
             },
-
-            // {
-            //     name: 'Is the package.json scripts present?',
-            //     // instance: ,
-            // },
+            {
+                name: 'Is the package.json scripts present?',
+                instance: new PackageJsonScriptsPresentedStep(directory),
+            },
             // {
             //     name: 'Is the pre-commit hook created?',
             //     // instance: ,
