@@ -18,6 +18,8 @@ const LintStagedPackageInstalledStep = require('./lint-staged-package-installed.
 const LintStagedPackageMatchesLatestSupportedVersionStep = require('./lint-staged-package-matches-latest-supported-version.step');
 const CodebaseFormattedWithPrettierStep = require('./codebase-formatted-with-prettier.step');
 const PackageJsonScriptsPresentedStep = require('./package-json-scripts-presented.step');
+const PreCommitHookInstalledStep = require('./pre-commit-hook-installed.step');
+const PreCommitHookMatchesCorporateTemplateStep = require('./pre-commit-hook-matches-corporate-template.step');
 
 // TSLint steps
 
@@ -42,6 +44,8 @@ module.exports = {
     LintStagedPackageMatchesLatestSupportedVersionStep,
     CodebaseFormattedWithPrettierStep,
     PackageJsonScriptsPresentedStep,
+    PreCommitHookInstalledStep,
+    PreCommitHookMatchesCorporateTemplateStep,
 
     // TSLint steps
 

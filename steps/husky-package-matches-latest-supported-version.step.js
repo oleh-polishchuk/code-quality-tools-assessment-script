@@ -20,7 +20,7 @@ class HuskyPackageMatchesLatestSupportedVersionStep {
             const devDependencies = packageJson.devDependencies;
 
             const huskyVersion = devDependencies && devDependencies.husky;
-            if (huskyVersion === '^7.0.1') {
+            if (huskyVersion === '^8.0.0') {
                 this.result.answer = true;
             }
 
@@ -34,7 +34,7 @@ class HuskyPackageMatchesLatestSupportedVersionStep {
     async fix() {
         try {
             await promisify(exec)(`npm uninstall husky`, { cwd: this.directory });
-            await promisify(exec)(`npm install --save-dev husky@7.0.1`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev husky@8.0.0`, { cwd: this.directory });
             this.result.answer = true;
             return [this.result];
         } catch (e) {

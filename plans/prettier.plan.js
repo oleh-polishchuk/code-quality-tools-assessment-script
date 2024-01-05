@@ -15,6 +15,8 @@ const {
     LintStagedPackageMatchesLatestSupportedVersionStep,
     CodebaseFormattedWithPrettierStep,
     PackageJsonScriptsPresentedStep,
+    PreCommitHookInstalledStep,
+    PreCommitHookMatchesCorporateTemplateStep,
 } = require("../steps");
 
 class PrettierPlan extends AbstractPlan {
@@ -58,33 +60,33 @@ class PrettierPlan extends AbstractPlan {
                 }
             },
             {
-                name: 'Is the husky package installed?',
-                instance: new HuskyPackageInstalledStep(directory),
-                next: {
-                    name: 'Does the husky package matches the latest supported version?',
-                    instance: new HuskyPackageMatchesLatestSupportedVersionStep(directory),
-                }
-            },
-            {
                 name: 'Is the lint-staged package installed?',
                 instance: new LintStagedPackageInstalledStep(directory),
                 next: {
                     name: 'Does the lint-staged package matches the latest supported version?',
                     instance: new LintStagedPackageMatchesLatestSupportedVersionStep(directory),
+                    next: {
+                        name: 'Is the husky package installed?',
+                        instance: new HuskyPackageInstalledStep(directory),
+                        next: {
+                            name: 'Does the husky package matches the latest supported version?',
+                            instance: new HuskyPackageMatchesLatestSupportedVersionStep(directory),
+                            next: {
+                                name: 'Is the pre-commit hook created?',
+                                instance: new PreCommitHookInstalledStep(directory),
+                                next: {
+                                    name: 'Does the pre-commit hook matches the corporate template?',
+                                    instance: new PreCommitHookMatchesCorporateTemplateStep(directory),
+                                }
+                            },
+                        }
+                    },
                 }
             },
             {
                 name: 'Is the package.json scripts present?',
                 instance: new PackageJsonScriptsPresentedStep(directory),
             },
-            // {
-            //     name: 'Is the pre-commit hook created?',
-            //     // instance: ,
-            //     next: {
-            //         name: 'Does the pre-commit hook matches the corporate template?',
-            //         // instance: ,
-            //     }
-            // },
             {
                 name: "Is the codebase formatted with prettier?",
                 instance: new CodebaseFormattedWithPrettierStep(directory),
