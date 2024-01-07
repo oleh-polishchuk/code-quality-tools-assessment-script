@@ -20,9 +20,9 @@ async function main() {
         const prettierPlan = new PrettierPlan(directory, corporateTemplatesPath, fix);
         const tslintPlan = new TSLintPlan(directory, corporateTemplatesPath, fix);
 
-        // results.push(...await editorconfigPlan.execute());
+        results.push(...await editorconfigPlan.execute());
         results.push(...await prettierPlan.execute());
-        // results.push(...await tslintPlan.execute());
+        results.push(...await tslintPlan.execute());
     }
 
     // write results
