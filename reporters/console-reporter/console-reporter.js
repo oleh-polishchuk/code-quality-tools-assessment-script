@@ -9,7 +9,9 @@ class ConsoleReporter {
         if (this.verbose) {
             if (this.failed) {
                 const filteredData = data.filter(({ passCheck }) => !passCheck);
-                console.table(filteredData);
+                if (filteredData.length) {
+                    console.table(filteredData);
+                }
             } else {
                 console.table(data);
             }
