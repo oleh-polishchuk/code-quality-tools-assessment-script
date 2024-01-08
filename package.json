@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "bin": {
-    "code-quality-tools-assessment-script": "./index.js"
+    "code-inspector": "index.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/oleh-polishchuk/code-quality-tools-assessment-script/issues"
   },
-  "homepage": "https://github.com/oleh-polishchuk/code-quality-tools-assessment-script#readme"
+  "homepage": "https://github.com/oleh-polishchuk/code-quality-tools-assessment-script#readme",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "commander": "^11.1.0"
+  }
 }

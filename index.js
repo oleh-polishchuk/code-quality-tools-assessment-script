@@ -1,42 +1,23 @@
 #!/usr/bin/env node
 
-const utils = require('./utils');
-const { EditorconfigPlan, PrettierPlan, TSLintPlan } = require('./plans');
-const path = require("path");
+const { program } = require('commander');
+const { main } = require('./main');
 
-async function main() {
-    // prepare
-    const fix = process.argv.includes('--fix');
-    const results = [];
+program
+    .argument('[directory]', 'Optional directory of the project you want to inspect. If not specified, the current directory is used.', process.cwd())
+    .option('--fix', 'Fix project inconsistency in place. This is comparable to the eslint --fix workflow.')
+    .option('--verbose', 'Show each checked rule even if it passes check. By default Code Inspector shows only the rules that have not passed inspection.')
+    .option('--rule [name]', 'Check only the specified rule.')
+    .option('--debug', 'Show debug information.')
 
-    // process
-    const directories = utils.getDirectories();
-    for (const directory of directories) {
-        console.log(`Checking ${directory}`);
+program.parse(process.argv);
 
-        const corporateTemplatesPath = path.join(__dirname, 'corporate-templates');
-
-        const editorconfigPlan = new EditorconfigPlan(directory, corporateTemplatesPath, fix);
-        const prettierPlan = new PrettierPlan(directory, corporateTemplatesPath, fix);
-        const tslintPlan = new TSLintPlan(directory, corporateTemplatesPath, fix);
-
-        results.push(...await editorconfigPlan.execute());
-        results.push(...await prettierPlan.execute());
-        results.push(...await tslintPlan.execute());
-    }
-
-    // write results
-    const resultPath = utils.writeToCSV(results);
-
-    console.log('Done!');
-    console.log(`Results written to ${resultPath}`);
-
-}
-
-main()
-    .then(() => {
+main(program.args[0], program.opts())
+    .then((exitCode = 0) => {
         console.log('Done!');
+        process.exit(exitCode);
     })
     .catch((err) => {
         console.error(err);
+        process.exit(2);
     });

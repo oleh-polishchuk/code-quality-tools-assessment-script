@@ -1,0 +1,27 @@
+{
+  "extends": [],
+  "rules": {
+    "editorconfig-present": "on",
+    "editorconfig-match-template": "on",
+    "prettierrc-exist": "on",
+    "prettierrc-template-match": "on",
+    "prettier-install": "on",
+    "prettier-version-match": "on",
+    "prettierignore-exist": "on",
+    "prettierignore-template-match": "on",
+    "no-prettier-types-install": "on",
+    "fc-prettier-config-installed": "on",
+    "fc-prettier-config-match-version": "on",
+    "husky-installed": "on",
+    "husky-match-version": "on",
+    "lint-staged-installed": "on",
+    "lint-staged-match-version": "on",
+    "pre-commit-hook-install": "on",
+    "pre-commit-hook-template-match": "on",
+    "package-json-scripts-exist": "on",
+    "tslint-template-match": "on"
+  },
+  "reporters": [
+    "console-reporter"
+  ]
+}
