@@ -1,12 +1,18 @@
 class ConsoleReporter {
-    constructor(processDir, verbose = false) {
+    constructor(processDir, options = {}) {
         this.processDir = processDir;
-        this.verbose = verbose;
+        this.verbose = options.verbose;
+        this.failed = options.failed;
     }
 
     async report(data) {
         if (this.verbose) {
-            console.table(data);
+            if (this.failed) {
+                const filteredData = data.filter(({ passCheck }) => !passCheck);
+                console.table(filteredData);
+            } else {
+                console.table(data);
+            }
         }
         const summary = data.reduce((acc, { passCheck }) => {
             if (passCheck) {
