@@ -16,7 +16,7 @@ class PreCommitHookInstall {
 
     check() {
         try {
-            const preCommitHookPath = path.join(this.directory, '.git/hooks/pre-commit');
+            const preCommitHookPath = path.join(this.directory, '.husky', 'pre-commit');
             this.result.passCheck = fs.existsSync(preCommitHookPath);
             return [this.result];
         } catch (e) {

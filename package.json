@@ -4,7 +4,8 @@
   "description": "The script returns the status of the formatter, linter, and editorconfig tools",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "prepare": "husky install"
   },
   "bin": {
     "code-inspector": "index.js"
@@ -22,5 +23,9 @@
   "dependencies": {
     "axios": "^1.6.5",
     "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@fashioncloud/prettier-config": "^1.0.2",
+    "husky": "^8.0.0"
   }
 }

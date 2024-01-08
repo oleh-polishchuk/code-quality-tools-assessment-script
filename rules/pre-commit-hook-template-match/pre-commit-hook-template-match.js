@@ -4,7 +4,7 @@ const path = require('path');
 class PreCommitHookTemplateMatch {
     constructor(directory) {
         this.directory = directory;
-        this.preCommitHookPath = path.join(this.directory, '.git', 'hooks', 'pre-commit');
+        this.preCommitHookPath = path.join(this.directory, '.husky', 'pre-commit');
         this.templatePath = path.join(__dirname, 'templates', '.husky', 'pre-commit');
         this.result = {
             group: 'prettier',
