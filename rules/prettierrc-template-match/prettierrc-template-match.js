@@ -8,6 +8,7 @@ class PrettierrcTemplateMatch {
         this.templatePath = path.join(__dirname, 'templates', '.prettierrc.js');
         this.result = {
             group: 'prettier',
+            name: 'prettierrc-template-match',
             directory: this.directory,
             description: 'Does the .prettierrc.js file match the corporate template?',
             passCheck: false,

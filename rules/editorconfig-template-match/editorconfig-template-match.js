@@ -9,6 +9,7 @@ class EditorconfigTemplateMatch {
         this.templatePath = path.join(__dirname, 'templates', '.editorconfig');
         this.result = {
             group: 'editorconfig',
+            name: 'editorconfig-template-match',
             directory: this.directory,
             description: 'Does the .editorconfig config file match the corporate template?',
             passCheck: false,

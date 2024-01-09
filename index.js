@@ -15,7 +15,6 @@ program.parse(process.argv);
 
 main(program.args[0], program.opts())
     .then((exitCode = 0) => {
-        console.log('Done!');
         process.exit(exitCode);
     })
     .catch((err) => {

@@ -9,6 +9,7 @@ class PrettierVersionMatch {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'prettier-version-match',
             directory: directory,
             description: 'Does the prettier package match the version?',
             passCheck: false,

@@ -9,6 +9,7 @@ class PrettierInstall {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'prettier-install',
             directory: directory,
             description: 'Is the prettier package installed?',
             passCheck: false,

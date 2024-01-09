@@ -7,6 +7,7 @@ class TSLintConfigExist {
         this.configPath = path.join(this.directory, 'tslint.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-exist',
             directory: this.directory,
             description: 'Is the tslint.json config file present?',
             passCheck: false,

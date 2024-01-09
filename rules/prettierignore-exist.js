@@ -7,6 +7,7 @@ class PrettierignoreExist {
         this.configPath = path.join(this.directory, '.prettierignore');
         this.result = {
             group: 'prettier',
+            name: 'prettierignore-exist',
             directory: this.directory,
             description: 'Is the .prettierignore file present?',
             passCheck: false,

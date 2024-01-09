@@ -9,6 +9,7 @@ class HuskyInstall {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'husky-install',
             directory: directory,
             description: 'Is the husky package installed?',
             passCheck: false,

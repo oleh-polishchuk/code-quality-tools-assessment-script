@@ -8,6 +8,7 @@ class PrettierignoreTemplateMatch {
         this.templatePath = path.join(__dirname, 'templates', '.prettierignore');
         this.result = {
             group: 'prettier',
+            name: 'prettierignore-template-match',
             directory: this.directory,
             description: 'Does the .prettierignore file match the corporate template?',
             passCheck: false,

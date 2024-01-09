@@ -7,6 +7,7 @@ class PrettierrcExist {
         this.configPath = path.join(this.directory, '.prettierrc.js');
         this.result = {
             group: 'prettier',
+            name: 'prettierrc-exist',
             directory: this.directory,
             description: 'Is the .prettierrc.js file present?',
             passCheck: false,

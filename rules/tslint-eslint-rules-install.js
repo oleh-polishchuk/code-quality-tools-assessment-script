@@ -9,6 +9,7 @@ class TSLintESLintRulesInstall {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-eslint-rules-install',
             directory: directory,
             description: 'Is the tslint-eslint-rules package installed?',
             passCheck: false,

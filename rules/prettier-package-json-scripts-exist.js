@@ -7,6 +7,7 @@ class PrettierPackageJsonScriptsExist {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'prettier-package-json-scripts-exist',
             directory: directory,
             description: 'Are the prettier package.json scripts present?',
             passCheck: false,

@@ -9,6 +9,7 @@ class FashionCloudPrettierConfigInstall {
         this.packageJsonPath = path.join(this.directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'fc-prettier-config-install',
             directory: directory,
             description: 'Is the @fashioncloud/prettier-config package installed?',
             passCheck: false,

@@ -8,6 +8,7 @@ class NoPrettierTypesInstall {
         this.directory = directory;
         this.result = {
             group: 'prettier',
+            name: 'no-prettier-types-install',
             directory: directory,
             description: 'Is the unneeded @types/prettier package uninstalled?',
             passCheck: false,

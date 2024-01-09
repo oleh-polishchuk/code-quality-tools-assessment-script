@@ -8,6 +8,7 @@ class PreCommitHookInstall {
         this.directory = directory;
         this.result = {
             group: 'prettier',
+            name: 'pre-commit-hook-install',
             directory: directory,
             description: 'Is the pre-commit hook installed?',
             passCheck: false,

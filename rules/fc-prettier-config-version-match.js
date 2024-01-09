@@ -9,6 +9,7 @@ class FcPrettierConfigVersionMatch {
         this.packageJsonPath = path.join(this.directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'fc-prettier-config-version-match',
             directory: directory,
             description: 'Does the @fashioncloud/prettier-config package match the version?',
             passCheck: false,

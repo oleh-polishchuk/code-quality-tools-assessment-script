@@ -9,6 +9,7 @@ class LintStagedInstall {
         this.packageJsonPath = path.join(this.directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'lint-staged-install',
             directory: directory,
             description: 'Is the lint-staged package installed?',
             passCheck: false,

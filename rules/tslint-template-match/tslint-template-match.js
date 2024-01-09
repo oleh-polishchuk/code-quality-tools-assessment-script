@@ -8,6 +8,7 @@ class TslintTemplateMatch {
         this.templatePath = path.join(__dirname, 'templates', 'tslint.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-template-match',
             directory: this.directory,
             description: 'Does the tslint.json file match the corporate template?',
             passCheck: false,

@@ -9,6 +9,7 @@ class TSLintInstall {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-install',
             directory: directory,
             description: 'Is the tslint package installed?',
             passCheck: false,

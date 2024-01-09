@@ -8,6 +8,7 @@ class PreCommitHookTemplateMatch {
         this.templatePath = path.join(__dirname, 'templates', '.husky', 'pre-commit');
         this.result = {
             group: 'prettier',
+            name: 'pre-commit-hook-template-match',
             directory: directory,
             description: 'Does the pre-commit hook match the corporate template?',
             passCheck: false,

@@ -8,6 +8,7 @@ class EditorconfigExist {
         this.configPath = path.join(this.directory, '.editorconfig');
         this.result = {
             group: 'editorconfig',
+            name: 'editorconfig-exist',
             directory: this.directory,
             description: 'Is the .editorconfig config file present?',
             passCheck: false,

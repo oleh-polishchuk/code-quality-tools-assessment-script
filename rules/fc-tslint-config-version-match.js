@@ -9,6 +9,7 @@ class FashionCloudTSLintConfigVersionMatch {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'fc-tslint-config-version-match',
             directory: directory,
             description: 'Does the @fashioncloud/tslint-config package match the version?',
             passCheck: false,

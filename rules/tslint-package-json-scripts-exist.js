@@ -7,6 +7,7 @@ class TSLintPackageJsonScriptsExist {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-package-json-scripts-exist',
             directory: directory,
             description: 'Are the tslint package.json scripts present?',
             passCheck: false,

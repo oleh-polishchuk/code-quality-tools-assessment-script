@@ -9,6 +9,7 @@ class LintStagedVersionMatch {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'lint-staged-version-match',
             directory: directory,
             description: 'Does the lint-staged package match the version?',
             passCheck: false,

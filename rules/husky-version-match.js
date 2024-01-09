@@ -9,6 +9,7 @@ class HuskyVersionMatch {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
+            name: 'husky-version-match',
             directory: directory,
             description: 'Does the husky package match the version?',
             passCheck: false,

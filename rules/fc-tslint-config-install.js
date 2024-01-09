@@ -9,6 +9,7 @@ class FashionCloudTSLintConfigInstall {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'fc-tslint-config-install',
             directory: directory,
             description: 'Is the @fashioncloud/tslint-config package installed?',
             passCheck: false,

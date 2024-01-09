@@ -9,6 +9,7 @@ class TSLintESLintRulesVersionMatch {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-eslint-rules-version-match',
             directory: directory,
             description: 'Does the tslint-eslint-rules package match the version?',
             passCheck: false,

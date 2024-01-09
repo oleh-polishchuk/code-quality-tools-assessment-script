@@ -9,6 +9,7 @@ class TSLintConfigPrettierVersionMatch {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-config-prettier-version-match',
             directory: directory,
             description: 'Does the tslint-config-prettier package match the version?',
             passCheck: false,

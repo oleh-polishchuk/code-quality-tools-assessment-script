@@ -9,6 +9,7 @@ class TSLintConfigPrettierInstall {
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'tslint',
+            name: 'tslint-config-prettier-install',
             directory: directory,
             description: 'Is the tslint-config-prettier package installed?',
             passCheck: false,
