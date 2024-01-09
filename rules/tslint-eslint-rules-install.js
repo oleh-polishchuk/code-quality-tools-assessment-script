@@ -3,14 +3,14 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class PrettierInstall {
+class TSLintESLintRulesInstall {
     constructor(directory) {
         this.directory = directory;
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
-            group: 'prettier',
+            group: 'tslint',
             directory: directory,
-            description: 'Is the prettier package installed?',
+            description: 'Is the tslint-eslint-rules package installed?',
             passCheck: false,
         };
     }
@@ -21,7 +21,7 @@ class PrettierInstall {
             const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const packageDevInstalled = devDependencies && devDependencies['prettier'];
+            const packageDevInstalled = devDependencies && devDependencies['tslint-eslint-rules'];
             if (packageDevInstalled) {
                 this.result.passCheck = true;
             }
@@ -34,8 +34,8 @@ class PrettierInstall {
 
     async fix() {
         try {
-            await promisify(exec)(`npm uninstall prettier`, { cwd: this.directory });
-            await promisify(exec)(`npm install --save-dev prettier@3.1.1`, { cwd: this.directory });
+            await promisify(exec)(`npm uninstall tslint-eslint-rules`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev tslint-eslint-rules@5.4.0`, { cwd: this.directory });
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
@@ -44,4 +44,4 @@ class PrettierInstall {
     }
 }
 
-module.exports = PrettierInstall;
+module.exports = TSLintESLintRulesInstall;

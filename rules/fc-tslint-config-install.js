@@ -3,16 +3,14 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class FcPrettierConfigMatchVersion {
+class FashionCloudTSLintConfigInstall {
     constructor(directory) {
         this.directory = directory;
-        this.packageJsonPath = path.join(this.directory, 'package.json');
-        this.fcPackage = '@fashioncloud/prettier-config';
-        this.fcPackageVersion = '1.0.2';
+        this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
-            group: 'prettier',
+            group: 'tslint',
             directory: directory,
-            description: 'Does the @fashioncloud/prettier-config package matches the latest supported version?',
+            description: 'Is the @fashioncloud/tslint-config package installed?',
             passCheck: false,
         };
     }
@@ -23,30 +21,27 @@ class FcPrettierConfigMatchVersion {
             const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const prettierConfigVersion = devDependencies && devDependencies[this.fcPackage];
-            if (prettierConfigVersion === `^${this.fcPackageVersion}`) {
+            const packageDevInstalled = devDependencies && devDependencies['@fashioncloud/tslint-config'];
+            if (packageDevInstalled) {
                 this.result.passCheck = true;
             }
 
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 
     async fix() {
         try {
-            await promisify(exec)(`npm uninstall ${this.fcPackage}`, { cwd: this.directory });
-            await promisify(exec)(`npm install --save-dev ${this.fcPackage}@${this.fcPackageVersion}`, { cwd: this.directory });
+            await promisify(exec)(`npm uninstall @fashioncloud/tslint-config`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev @fashioncloud/tslint-config@1.1.0`, { cwd: this.directory });
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 }
 
-module.exports = FcPrettierConfigMatchVersion;
-
+module.exports = FashionCloudTSLintConfigInstall;

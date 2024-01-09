@@ -3,30 +3,31 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class LintStagedMatchVersion {
+class LintStagedVersionMatch {
     constructor(directory) {
         this.directory = directory;
+        this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
             directory: directory,
-            description: 'Does the lint-staged package matches the latest supported version?',
+            description: 'Does the lint-staged package match the version?',
             passCheck: false,
         };
     }
 
     check() {
         try {
-            const packageJson = JSON.parse(fs.readFileSync(path.join(this.directory, 'package.json'), 'utf8'));
+            const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
+            const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const lintStagedVersion = devDependencies && devDependencies['lint-staged']
-            if (lintStagedVersion === '^11.0.0') {
+            const packageVersion = devDependencies && devDependencies['lint-staged']
+            if (packageVersion === '^11.0.0') {
                 this.result.passCheck = true;
             }
 
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -38,11 +39,10 @@ class LintStagedMatchVersion {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 }
 
-module.exports = LintStagedMatchVersion;
+module.exports = LintStagedVersionMatch;
 

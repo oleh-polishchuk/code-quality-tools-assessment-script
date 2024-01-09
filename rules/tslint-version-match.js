@@ -3,14 +3,14 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class PrettierInstall {
+class TSLintVersionMatch {
     constructor(directory) {
         this.directory = directory;
         this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
-            group: 'prettier',
+            group: 'tslint',
             directory: directory,
-            description: 'Is the prettier package installed?',
+            description: 'Does the tslint package match the version?',
             passCheck: false,
         };
     }
@@ -21,8 +21,8 @@ class PrettierInstall {
             const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const packageDevInstalled = devDependencies && devDependencies['prettier'];
-            if (packageDevInstalled) {
+            const packageVersion = devDependencies && devDependencies['tslint'];
+            if (packageVersion === '^5.20.1') {
                 this.result.passCheck = true;
             }
 
@@ -34,8 +34,8 @@ class PrettierInstall {
 
     async fix() {
         try {
-            await promisify(exec)(`npm uninstall prettier`, { cwd: this.directory });
-            await promisify(exec)(`npm install --save-dev prettier@3.1.1`, { cwd: this.directory });
+            await promisify(exec)(`npm uninstall tslint`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev tslint@5.20.1`, { cwd: this.directory });
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
@@ -44,4 +44,5 @@ class PrettierInstall {
     }
 }
 
-module.exports = PrettierInstall;
+module.exports = TSLintVersionMatch;
+

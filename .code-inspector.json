@@ -11,15 +11,21 @@
     "prettierignore-template-match": "on",
     "no-prettier-types-install": "on",
     "fc-prettier-config-installed": "on",
-    "fc-prettier-config-match-version": "on",
+    "fc-prettier-config-version-match": "on",
     "husky-installed": "on",
-    "husky-match-version": "on",
+    "husky-version-match": "on",
     "lint-staged-installed": "on",
-    "lint-staged-match-version": "on",
+    "lint-staged-version-match": "on",
     "pre-commit-hook-install": "on",
     "pre-commit-hook-template-match": "on",
     "package-json-scripts-exist": "on",
-    "tslint-template-match": "on"
+    "tslint-exist": "on",
+    "tslint-template-match": "on",
+    "tslint-install": "on",
+    "tslint-version-match": "on",
+    "tslint-eslint-rules-install": "on",
+    "tslint-eslint-rules-version-match": "on",
+    "fc-tslint-config-install": "on"
   },
   "reporters": [
     "console-reporter"

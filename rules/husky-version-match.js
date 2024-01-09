@@ -3,30 +3,31 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class HuskyMatchVersion {
+class HuskyVersionMatch {
     constructor(directory) {
         this.directory = directory;
+        this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
             directory: directory,
-            description: 'Does the husky package matches the latest supported version?',
+            description: 'Does the husky package match the version?',
             passCheck: false,
         };
     }
 
     check() {
         try {
-            const packageJson = JSON.parse(fs.readFileSync(path.join(this.directory, 'package.json'), 'utf8'));
+            const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
+            const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const huskyVersion = devDependencies && devDependencies.husky;
-            if (huskyVersion === '^8.0.0') {
+            const packageVersion = devDependencies && devDependencies['husky'];
+            if (packageVersion === '^8.0.0') {
                 this.result.passCheck = true;
             }
 
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -38,11 +39,10 @@ class HuskyMatchVersion {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 }
 
-module.exports = HuskyMatchVersion;
+module.exports = HuskyVersionMatch;
 
