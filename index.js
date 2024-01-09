@@ -5,6 +5,7 @@ const { main } = require('./main');
 
 program
     .argument('[directory]', 'Optional directory of the project you want to inspect. If not specified, the current directory is used.', process.cwd())
+    .option('--nested', 'Check nested projects. By default Code Inspector checks only the root project.')
     .option('--fix', 'Fix project inconsistency in place. This is comparable to the eslint --fix workflow.')
     .option('--verbose', 'Show each checked rule even if it passes check. By default Code Inspector shows only the rules that have not passed inspection.')
     .option('--failed', 'Show only the rules that have not passed inspection.')

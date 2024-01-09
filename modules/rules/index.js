@@ -1,5 +1,5 @@
-const { checkProjectForComplianceWithRules } = require('./rules');
+const { checkProjectsForComplianceWithRules } = require('./rules');
 
 module.exports = {
-    checkProjectForComplianceWithRules,
+    checkProjectsForComplianceWithRules,
 }

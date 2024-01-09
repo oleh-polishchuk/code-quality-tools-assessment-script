@@ -7,7 +7,7 @@ async function reportResults(reporters, data, options) {
             console.warn(`Reporter "${name}" is enabled but the file ${src} does not exist. Skipping.`);
             continue;
         }
-        const reporterInstance = new Reporter(options.processDir, options);
+        const reporterInstance = new Reporter(options);
         await reporterInstance.report(data);
     }
 }

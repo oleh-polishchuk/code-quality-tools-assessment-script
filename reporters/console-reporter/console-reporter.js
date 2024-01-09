@@ -1,6 +1,5 @@
 class ConsoleReporter {
-    constructor(processDir, options = {}) {
-        this.processDir = processDir;
+    constructor(options = {}) {
         this.verbose = options.verbose;
         this.failed = options.failed;
     }

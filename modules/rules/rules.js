@@ -1,3 +1,19 @@
+async function checkProjectsForComplianceWithRules(rules, options) {
+    const results = [];
+    let exitCode = 0;
+
+    for (const projectDir of options.processDirs) {
+        options.processDir = projectDir;
+        const projectResult = await checkProjectForComplianceWithRules(rules, options);
+        results.push(...projectResult.results);
+        if (projectResult.exitCode !== 0) {
+            exitCode = projectResult.exitCode;
+        }
+    }
+
+    return { results, exitCode };
+}
+
 async function checkProjectForComplianceWithRules(rules, options) {
     const results = [];
     let exitCode = 0;
@@ -34,5 +50,5 @@ async function checkProjectForComplianceWithRules(rules, options) {
 }
 
 module.exports = {
-    checkProjectForComplianceWithRules,
+    checkProjectsForComplianceWithRules,
 }
