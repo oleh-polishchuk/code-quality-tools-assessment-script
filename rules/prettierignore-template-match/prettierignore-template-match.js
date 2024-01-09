@@ -21,7 +21,6 @@ class PrettierignoreTemplateMatch {
             this.result.passCheck = prettierignoreFile === prettierignoreFileCorporateTemplate;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -33,7 +32,6 @@ class PrettierignoreTemplateMatch {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }

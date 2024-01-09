@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-class EditorconfigMatchTemplate {
+class EditorconfigTemplateMatch {
 
     constructor(directory) {
         this.directory = directory;
         this.configPath = path.join(this.directory, '.editorconfig');
-        this.corporateTemplateConfigFilePath = path.join(__dirname, 'templates', '.editorconfig');
+        this.templatePath = path.join(__dirname, 'templates', '.editorconfig');
         this.result = {
             group: 'editorconfig',
             directory: this.directory,
@@ -18,26 +18,24 @@ class EditorconfigMatchTemplate {
     check() {
         try {
             const config = fs.readFileSync(this.configPath, 'utf8');
-            const corporateTemplateConfig = fs.readFileSync(this.corporateTemplateConfigFilePath, 'utf8');
-            this.result.passCheck = config === corporateTemplateConfig;
+            const template = fs.readFileSync(this.templatePath, 'utf8');
+            this.result.passCheck = config === template;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 
     fix() {
         try {
-            const corporateTemplateConfig = fs.readFileSync(this.corporateTemplateConfigFilePath, 'utf8');
-            fs.writeFileSync(this.configPath, corporateTemplateConfig);
+            const template = fs.readFileSync(this.templatePath, 'utf8');
+            fs.writeFileSync(this.configPath, template);
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 }
 
-module.exports = EditorconfigMatchTemplate;
+module.exports = EditorconfigTemplateMatch;

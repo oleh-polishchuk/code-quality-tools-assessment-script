@@ -21,7 +21,6 @@ class PreCommitHookTemplateMatch {
             this.result.passCheck = preCommitHook === corporateTemplate;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -33,7 +32,6 @@ class PreCommitHookTemplateMatch {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }

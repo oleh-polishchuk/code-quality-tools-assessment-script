@@ -3,9 +3,10 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class HuskyInstalled {
+class HuskyInstall {
     constructor(directory) {
         this.directory = directory;
+        this.packageJsonPath = path.join(directory, 'package.json');
         this.result = {
             group: 'prettier',
             directory: directory,
@@ -16,17 +17,17 @@ class HuskyInstalled {
 
     check() {
         try {
-            const packageJson = JSON.parse(fs.readFileSync(path.join(this.directory, 'package.json'), 'utf8'));
+            const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
+            const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const huskyDevInstalled = devDependencies && devDependencies.husky;
-            if (huskyDevInstalled) {
+            const packageInstalled = devDependencies && devDependencies['husky'];
+            if (packageInstalled) {
                 this.result.passCheck = true;
             }
 
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -38,10 +39,9 @@ class HuskyInstalled {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 }
 
-module.exports = HuskyInstalled;
+module.exports = HuskyInstall;

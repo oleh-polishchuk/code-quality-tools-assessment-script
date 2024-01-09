@@ -3,9 +3,10 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class LintStagedInstalled {
+class LintStagedInstall {
     constructor(directory) {
         this.directory = directory;
+        this.packageJsonPath = path.join(this.directory, 'package.json');
         this.result = {
             group: 'prettier',
             directory: directory,
@@ -16,7 +17,8 @@ class LintStagedInstalled {
 
     check() {
         try {
-            const packageJson = JSON.parse(fs.readFileSync(path.join(this.directory, 'package.json'), 'utf8'));
+            const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
+            const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
             const lintStagedDevInstalled = devDependencies && devDependencies['lint-staged'];
@@ -26,7 +28,6 @@ class LintStagedInstalled {
 
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -38,10 +39,9 @@ class LintStagedInstalled {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 }
 
-module.exports = LintStagedInstalled;
+module.exports = LintStagedInstall;

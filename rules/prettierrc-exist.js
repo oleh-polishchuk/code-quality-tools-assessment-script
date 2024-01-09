@@ -18,7 +18,6 @@ class PrettierrcExist {
             this.result.passCheck = fs.existsSync(this.configPath);
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -29,7 +28,6 @@ class PrettierrcExist {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }

@@ -3,27 +3,26 @@ const path = require('path');
 const promisify = require('util').promisify;
 const exec = require('child_process').exec;
 
-class NoPrettierTypesInstall {
+class FashionCloudPrettierConfigInstall {
     constructor(directory) {
         this.directory = directory;
+        this.packageJsonPath = path.join(this.directory, 'package.json');
         this.result = {
             group: 'prettier',
             directory: directory,
-            description: 'Is the unneeded @types/prettier package uninstalled?',
+            description: 'Is the @fashioncloud/prettier-config package installed?',
             passCheck: false,
         };
     }
 
     check() {
         try {
-            const packageJson = JSON.parse(fs.readFileSync(path.join(this.directory, 'package.json'), 'utf8'));
-            const dependencies = packageJson.dependencies;
+            const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
+            const packageJson = JSON.parse(packageJsonContent);
             const devDependencies = packageJson.devDependencies;
 
-            const typesPrettierInstalled = dependencies && dependencies['@types/prettier'];
-            const typesPrettierDevInstalled = devDependencies && devDependencies['@types/prettier'];
-
-            if (!typesPrettierInstalled && !typesPrettierDevInstalled) {
+            const packageVersion = devDependencies && devDependencies['@fashioncloud/prettier-config'];
+            if (packageVersion) {
                 this.result.passCheck = true;
             }
 
@@ -35,7 +34,7 @@ class NoPrettierTypesInstall {
 
     async fix() {
         try {
-            await promisify(exec)(`npm uninstall @types/prettier`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev @fashioncloud/prettier-config@1.0.2`, { cwd: this.directory });
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
@@ -44,4 +43,4 @@ class NoPrettierTypesInstall {
     }
 }
 
-module.exports = NoPrettierTypesInstall;
+module.exports = FashionCloudPrettierConfigInstall;

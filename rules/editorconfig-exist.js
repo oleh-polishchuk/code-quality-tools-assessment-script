@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-class EditorconfigPresent {
+class EditorconfigExist {
 
     constructor(directory) {
         this.directory = directory;
@@ -19,7 +19,6 @@ class EditorconfigPresent {
             this.result.passCheck = fs.existsSync(this.configPath);
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
@@ -30,11 +29,10 @@ class EditorconfigPresent {
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
-            // console.error(e);
             return [this.result];
         }
     }
 
 }
 
-module.exports = EditorconfigPresent;
+module.exports = EditorconfigExist;

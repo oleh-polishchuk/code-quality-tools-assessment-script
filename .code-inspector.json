@@ -1,8 +1,8 @@
 {
   "extends": [],
   "rules": {
-    "editorconfig-present": "on",
-    "editorconfig-match-template": "on",
+    "editorconfig-exist": "on",
+    "editorconfig-template-match": "on",
     "prettierrc-exist": "on",
     "prettierrc-template-match": "on",
     "prettier-install": "on",
@@ -10,22 +10,26 @@
     "prettierignore-exist": "on",
     "prettierignore-template-match": "on",
     "no-prettier-types-install": "on",
-    "fc-prettier-config-installed": "on",
+    "fc-prettier-config-install": "on",
     "fc-prettier-config-version-match": "on",
-    "husky-installed": "on",
+    "husky-install": "on",
     "husky-version-match": "on",
-    "lint-staged-installed": "on",
+    "lint-staged-install": "on",
     "lint-staged-version-match": "on",
     "pre-commit-hook-install": "on",
     "pre-commit-hook-template-match": "on",
-    "package-json-scripts-exist": "on",
+    "prettier-package-json-scripts-exist": "on",
     "tslint-exist": "on",
     "tslint-template-match": "on",
     "tslint-install": "on",
     "tslint-version-match": "on",
     "tslint-eslint-rules-install": "on",
     "tslint-eslint-rules-version-match": "on",
-    "fc-tslint-config-install": "on"
+    "fc-tslint-config-install": "on",
+    "fc-tslint-config-version-match": "on",
+    "tslint-config-prettier-install": "on",
+    "tslint-config-prettier-version-match": "on",
+    "tslint-package-json-scripts-exist": "on"
   },
   "reporters": [
     "console-reporter"
