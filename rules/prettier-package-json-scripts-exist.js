@@ -32,10 +32,9 @@ class PrettierPackageJsonScriptsExist {
         try {
             const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
             const packageJson = JSON.parse(packageJsonContent);
-            packageJson.scripts = {
-                'format:check': 'prettier --config ./.prettierrc.js \"./app/**/*.ts\" \"./tests/**/*.ts\"',
-                'format:write': 'prettier --write --config ./.prettierrc.js \"./app/**/*.ts\" \"./tests/**/*.ts\"',
-            }
+            packageJson.scripts = packageJson.scripts || {};
+            packageJson.scripts['format:check'] = packageJson.scripts['format:check'] || 'prettier --config ./.prettierrc.js \"./app/**/*.ts\" \"./tests/**/*.ts\"';
+            packageJson.scripts['format:write'] = packageJson.scripts['format:write'] || 'prettier --write --config ./.prettierrc.js \"./app/**/*.ts\" \"./tests/**/*.ts\"';
             fs.writeFileSync(this.packageJsonPath, JSON.stringify(packageJson, null, 2));
             this.result.passCheck = true;
             return [this.result];

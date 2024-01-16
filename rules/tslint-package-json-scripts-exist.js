@@ -32,10 +32,9 @@ class TSLintPackageJsonScriptsExist {
         try {
             const packageJsonContent = fs.readFileSync(this.packageJsonPath, 'utf8');
             const packageJson = JSON.parse(packageJsonContent);
-            packageJson.scripts = {
-                'tslint': 'tslint \'app/**/*.ts\'',
-                'tslint:fix': 'tslint \'app/**/*.ts\' --fix',
-            }
+            packageJson.scripts = packageJson.scripts || {};
+            packageJson.scripts['tslint'] = packageJson.scripts['tslint'] || 'tslint \'app/**/*.ts\'';
+            packageJson.scripts['tslint:fix'] = packageJson.scripts['tslint:fix'] || 'tslint \'app/**/*.ts\' --fix';
             fs.writeFileSync(this.packageJsonPath, JSON.stringify(packageJson, null, 2));
             this.result.passCheck = true;
             return [this.result];
