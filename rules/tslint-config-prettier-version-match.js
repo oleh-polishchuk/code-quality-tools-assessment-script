@@ -23,7 +23,7 @@ class TSLintConfigPrettierVersionMatch {
             const devDependencies = packageJson.devDependencies;
 
             const packageVersion = devDependencies && devDependencies['tslint-config-prettier'];
-            if (packageVersion === '^1.1.0') {
+            if (packageVersion === '^1.18.0') {
                 this.result.passCheck = true;
             }
 
@@ -36,7 +36,7 @@ class TSLintConfigPrettierVersionMatch {
     async fix() {
         try {
             await promisify(exec)(`npm uninstall tslint-config-prettier`, { cwd: this.directory });
-            await promisify(exec)(`npm install --save-dev tslint-config-prettier@1.1.0`, { cwd: this.directory });
+            await promisify(exec)(`npm install --save-dev tslint-config-prettier@1.18.0`, { cwd: this.directory });
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
