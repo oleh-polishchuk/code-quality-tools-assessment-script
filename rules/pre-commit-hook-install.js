@@ -27,11 +27,34 @@ class PreCommitHookInstall {
 
     async fix() {
         try {
+            if (!await this.isGitInitialized()) {
+                await this.initializeGit();
+            }
             await promisify(exec)(`npm_config_yes=true npx husky-init@8.0.0 --yes`, { cwd: this.directory });
             this.result.passCheck = true;
             return [this.result];
         } catch (e) {
             return [this.result];
+        }
+    }
+
+    /// Helper methods
+
+    async isGitInitialized() {
+        try {
+            await promisify(exec)(`git rev-parse --is-inside-work-tree`, { cwd: this.directory });
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    async initializeGit() {
+        try {
+            await promisify(exec)(`git init`, { cwd: this.directory });
+            return true;
+        } catch (e) {
+            return false;
         }
     }
 }

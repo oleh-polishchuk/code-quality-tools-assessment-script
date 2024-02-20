@@ -2,6 +2,9 @@
 
 const { program } = require('commander');
 const { main } = require('./main');
+const validateEnvironment = require('./validation');
+
+validateEnvironment();
 
 program
     .argument('[directory]', 'Optional directory of the project you want to inspect. If not specified, the current directory is used.', process.cwd())
