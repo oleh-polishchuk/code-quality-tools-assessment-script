@@ -16,6 +16,7 @@
     "husky-version-match": "on",
     "lint-staged-install": "on",
     "lint-staged-version-match": "on",
+    "lint-staged-config-exist": "on",
     "pre-commit-hook-install": "on",
     "pre-commit-hook-template-match": "on",
     "prettier-package-json-scripts-exist": "on",
